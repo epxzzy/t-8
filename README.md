@@ -14,10 +14,9 @@ handheld experiment
     - Python 3.9+ (ESP-IDF needs it, for venv)
     - CMake
 
-If you dont have the hardware you can just simulate the thing via wokwi (soon tm)
-
-
-
+    software for simulation (optional)
+    - vscode (any forks would also do)
+    - wokwi access key && wokwi extension for vscode(or forks)
 
 
 ## setup:
@@ -98,4 +97,19 @@ if you have the hardware, plug it in and then:
 if you do not have the hardware(holy brokie),  
 i am setting up wokwi so you can simulate the  
 thing. i will expand more on this later.
+
+## simulating (via wokwi) 
+
+first install via the official installation guide:  
+https://docs.wokwi.com/vscode/getting-started#installation
+
+once you have the extension activated you can just hit `ctrl + shift + p`  
+and input `Wokwi: Start Simulation` to run it. its that simple.
+
+make a few changes, tweak a few things, build via espidf and the simulation  
+will automatically reflect the changes.
+
+if you would like to tweak wokwi related stuff:
+`./diagram.json` - responsible for the circuitry
+`./wokwi.toml` - wokwi configuration 
 

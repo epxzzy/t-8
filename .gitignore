@@ -67,3 +67,7 @@
 
 ### build
 build/*
+
+### fuckin cache
+.cache/*
+

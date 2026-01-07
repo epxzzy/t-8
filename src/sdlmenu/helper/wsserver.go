@@ -55,7 +55,6 @@ func WsServerRLoop(conn *websocket.Conn){
 			break
 
 		}
-		log.Println("reader read: ", string(message))
 		RecieveQueue.Enqueue(string(message));
 	}
 }
@@ -71,7 +70,6 @@ func WsServerSLoop(conn *websocket.Conn){
 				break
 
 			}
-			log.Println("sent: ", SendQueue.Dequeue())
 		}
 	}
 }

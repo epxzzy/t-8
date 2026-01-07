@@ -36,7 +36,7 @@ func main() {
 						break
 					}
 
-					lagger.Log(helper.SystemProgramLog, helper.RecieveQueue.Dequeue())
+					lagger.Log(helper.SystemProgramLog, "server received: " + helper.RecieveQueue.Dequeue())
 				}
 			}
 		}

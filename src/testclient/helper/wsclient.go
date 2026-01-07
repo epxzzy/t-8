@@ -37,16 +37,16 @@ func MessageInbox() Queue {
 
 
 func Dialer(){
-			//fmt.Println("client loopin it")
-			if RecieveQueueC.IsEmpty() == false {
-				for {
-					if RecieveQueueC.GetLength() == 0 {
-						break
-					}
-
-					wslagger.Log(SystemProgramLog,"recieved from client: " +RecieveQueueC.Dequeue())
-				}
+	//fmt.Println("client loopin it")
+	if RecieveQueueC.IsEmpty() == false {
+		for {
+			if RecieveQueueC.GetLength() == 0 {
+				break
 			}
+
+			wslagger.Log(SystemProgramLog,"recieved from client: " +RecieveQueueC.Dequeue())
+		}
+	}
 }
 
 
@@ -59,9 +59,7 @@ func WsClientRLoop(conn *websocket.Conn){
 			break
 
 		}
-		log.Println("reader read: ", string(message));
 		RecieveQueueC.Enqueue(string(message));
-
 	}
 }
 
@@ -77,8 +75,6 @@ func WsClientSLoop(conn *websocket.Conn){
 				break
 
 			}
-			log.Println("sent : ", SendQueueC.Dequeue());
-
 		}
 	}
 }

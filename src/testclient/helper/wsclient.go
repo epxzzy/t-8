@@ -1,16 +1,18 @@
-package main
+package helper 
 
 import (
 	"log"
+	//"fmt"
 	"net/url"
 	"github.com/gorilla/websocket"
 )
 
 var SendQueueC = Queue{Size: 10};
 var RecieveQueueC = Queue{Size: 10};
+var wslagger = Logger{DisableSystemProgramLogs: false};
 
-func initWsClient(){
-	u := url.URL{Scheme: "ws", Host: "127.0.0.1:8080", Path: "/tunnel"}
+func InitWSclient(){
+	u := url.URL{Scheme: "ws", Host: "127.0.0.1:8080", Path: "/t8devaidserver"}
 	log.Printf("connecitng to ws:localhost:8080/t8devaidserver")	
 
 	conn, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
@@ -18,6 +20,7 @@ func initWsClient(){
 	if err != nil {
 		log.Printf("dialer died dialing: ", err)
 	} else {
+		log.Printf("ze bleutoosh devise is a connected successafulley", err)
 		go WsClientRLoop(conn)
 		go WsClientSLoop(conn)
 	}
@@ -33,6 +36,20 @@ func MessageInbox() Queue {
 }
 
 
+func Dialer(){
+			//fmt.Println("client loopin it")
+			if RecieveQueueC.IsEmpty() == false {
+				for {
+					if RecieveQueueC.GetLength() == 0 {
+						break
+					}
+
+					wslagger.Log(SystemProgramLog,"recieved from client: " +RecieveQueueC.Dequeue())
+				}
+			}
+}
+
+
 func WsClientRLoop(conn *websocket.Conn){
 	for {
 		_, message, err := conn.ReadMessage()
@@ -42,6 +59,7 @@ func WsClientRLoop(conn *websocket.Conn){
 			break
 
 		}
+		log.Println("reader read: ", string(message));
 		RecieveQueueC.Enqueue(string(message));
 
 	}
@@ -59,6 +77,8 @@ func WsClientSLoop(conn *websocket.Conn){
 				break
 
 			}
+			log.Println("sent : ", SendQueueC.Dequeue());
+
 		}
 	}
 }

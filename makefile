@@ -1,44 +1,38 @@
 # Build directories
 ROOT := ./
-MODULES := $(ROOT)/src/sdlmenu/ $(ROOT)/src/router/ 
+MODULES := $(ROOT)/src/sdlmenu/ $(ROOT)/src/testclient/ 
 					#	$(ROOT) \
 					#	$(ROOT) 
 						
-BIN_DIR := build/bin
-ARTIFACTS_DIR := build/artifacts
+BIN_DIR := build/bin/src
+ARTIFACTS_DIR := build/src/artifacts
 
 GO_PROXY := direct
 TAG ?= latest
 
-SDLMENU := github.com/epxzzy/k-7/sdlmenu
-ROUTER := github.com/epxzzy/k-7/router
-TEST_DIR := src/test
-
-
 .PHONY: build clean test run
 	
-build: build-sdlmenu build-router
+build: build-sdlmenu build-client
 
 build-sdlmenu:
 	@echo "building sdlmenu"
 	(cd src/sdlmenu && go build -tags static -v -o ../../$(BIN_DIR)/sdlmenu/sdlmenu)
 
-build-router:
-	@echo "building router"
-	(cd src/router && go build -v -o ../../$(BIN_DIR)/router/router)
+build-client:
+	@echo "building client"
+	(cd src/testclient && go build -v -o ../../$(BIN_DIR)/testclient/testclient)
 
 run-sdlmenu:
 	@echo "running sdlmenu"
-	./build/bin/sdlmenu/sdlmenu
+	(./$(BIN_DIR)/sdlmenu/sdlmenu)
 
-run-router:
-	@echo "running router"
-	./build/bin/router/router
+run-client:
+	@echo "running client"
+	(./$(BIN_DIR)/testclient/testclient)
 
 clean:
 	@echo "Cleaning build artifacts..."
 	@rm -rf $(BIN_DIR) $(ARTIFACT_DIR)
-	@find . -name go.sum -delete
 
 test:
 	@for module in $(MODULE_DIRS); do \

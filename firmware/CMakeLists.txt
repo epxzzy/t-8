@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "main.cpp"
-    INCLUDE_DIRS "."
+    SRCS "tasks/base.cpp" "tasks/log_task.cpp" "main.cpp"
+    INCLUDE_DIRS "./"
 )
 

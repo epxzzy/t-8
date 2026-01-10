@@ -2,6 +2,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
+#include "tasks/log_task.hpp"
 
 extern "C" void app_main(void);
 
@@ -13,6 +14,8 @@ void hello_task(void* arg) {
 }
 
 extern "C" void app_main(void) {
+    /*
+    
     xTaskCreate(
         hello_task,      
         "hello_task",   
@@ -25,5 +28,9 @@ extern "C" void app_main(void) {
         nullptr          
         //task handle
     );
+   */ 
+    static LogTask task;
+    task.start();
+
 }
 

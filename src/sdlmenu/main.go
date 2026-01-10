@@ -47,9 +47,7 @@ func main() {
 	state := NewAnimationState()
 	mode := "NORMAL"
 
-
 	//keydown event
-	
 	wnd.KeyDown = func(scancode int, rn rune, name string) {
 		switch scancode {
 		case sdl.SCANCODE_N:
@@ -92,7 +90,6 @@ func main() {
 		cv.SetFont("Righteous-Regular.ttf", 40)
 		str := "T-8 Dev Aid Server"
 		cv.FillText(str, (w/2 - cv.MeasureText(str).Width/2), h/2)
-
 
 	})
 

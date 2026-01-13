@@ -68,6 +68,9 @@
 ### build
 build/*
 
+firmware/build/*
+managed_components/*
+
 ### fuckin cache
 .cache/*
 

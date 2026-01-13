@@ -87,8 +87,10 @@ if you are on linux run this before you proceed with anything:
 
 set target:  
 `> idf.py set-target esp32`  
+add dependency:
+`> cd firmware && idf.py add-dependency "espressif/esp_websocket_client^1.6.1"`
 and then to build:  
-`> idf.py build`
+`> cd ../ && idf.py build`
 
 if you have the hardware, plug it in and then:  
 `> idf.py flash monitor`

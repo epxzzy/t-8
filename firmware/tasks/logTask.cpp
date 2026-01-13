@@ -1,10 +1,10 @@
-#include "tasks/log_task.hpp"
+#include "tasks/logTask.hpp"
 #include "freertos/projdefs.h"
-#include "tasks/base.hpp"
+#include "tasks/baseTask.hpp"
 #include <stdio.h>
 
 LogTask::LogTask()
-    : TaskBase(
+    : BaseTask(
         "hellotask",
         2048,
         1

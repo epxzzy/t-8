@@ -5,23 +5,26 @@
 #include "portmacro.h"
 #include <cstdint>
 
-class TaskBase {
-
+class BaseTask {
 public: 
-    TaskBase(const char* name, uint32_t stack, UBaseType_t priority);
+    BaseTask(
+        const char* name,
+        uint32_t stack,
+        UBaseType_t priority
+    );
 
     //~TaskBase();  
     void start();
-    
-protected: 
+
+protected:
     virtual void run() = 0;
     // = 0 means abstract
 
-private: 
-    static void task_entry(void* arg);
-
-    const char* name;
+    const char *name;
     uint32_t stack;
     UBaseType_t priority;
     TaskHandle_t handle = nullptr;
+
+private:
+    static void task_entry(void *arg);
 };

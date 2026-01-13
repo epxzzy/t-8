@@ -1,8 +1,8 @@
 #pragma once
 
-#include "tasks/base.hpp"
+#include "tasks/baseTask.hpp"
 
-class LogTask: public TaskBase {
+class LogTask: public BaseTask {
 public:
     LogTask();
     void run() override;

@@ -2,9 +2,9 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
-#include "tasks/logTask.hpp"
-#include "services/systemService.hpp"
-#include "services/managers/SystemServiceManager.cpp"
+#include "old/tasks/logTask.hpp"
+#include "old/services/systemService.hpp"
+#include "old/services/managers/SystemServiceManager.cpp"
 
 extern "C" void app_main(void);
 

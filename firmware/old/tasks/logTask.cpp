@@ -1,6 +1,6 @@
-#include "tasks/logTask.hpp"
+#include "./logTask.hpp"
 #include "freertos/projdefs.h"
-#include "tasks/baseTask.hpp"
+#include "./baseTask.hpp"
 #include <stdio.h>
 
 LogTask::LogTask()

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tasks/baseTask.hpp"
+#include "./baseTask.hpp"
 
 class LogTask: public BaseTask {
 public:

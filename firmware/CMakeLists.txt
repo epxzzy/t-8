@@ -1,10 +1,10 @@
 idf_component_register(
     SRCS 
-        "tasks/logTask.cpp"
-        "tasks/baseTask.cpp"
+        "old/tasks/logTask.cpp"
+        "old/tasks/baseTask.cpp"
 
-        "services/systemService.cpp"
-        "services/managers/SystemServiceManager.cpp"
+        "old/services/systemService.cpp"
+        "old/services/managers/SystemServiceManager.cpp"
 
         "main.cpp"
 

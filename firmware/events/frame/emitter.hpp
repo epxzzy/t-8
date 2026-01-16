@@ -73,6 +73,7 @@ public:
 		*/
 
 		xSemaphoreGive(mutex);
+		delete static_cast<char*>(event.data.data);
 	};
 
 private:

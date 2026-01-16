@@ -21,7 +21,7 @@ constexpr size_t HEARTBEAT_SIZE = sizeof(HeartBeatData);
 
 inline EventData CreateHeartBeatEventData(bool boo){
 	HeartBeatData* dat = new HeartBeatData{boo};
-	return EventData{EventType::HB, &dat, HEARTBEAT_SIZE};
+	return EventData{EventType::HB, dat, HEARTBEAT_SIZE};
 }
 
 inline HeartBeatData ExtractHeartBeatEventData(EventData dat){
@@ -36,7 +36,7 @@ constexpr size_t LOG_SIZE = sizeof(LogData);
 
 inline EventData CreateLogEventData(std::string msg){
 	LogData* dat = new LogData{msg};
-	return EventData{EventType::LOG, &dat, LOG_SIZE};
+	return EventData{EventType::LOG, dat, LOG_SIZE};
 }
 
 inline LogData ExtractLogEventData(EventData dat){

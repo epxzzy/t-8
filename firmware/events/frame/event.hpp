@@ -10,11 +10,13 @@ public:
 	EventData data;
 	EventType type;
 
+	Event() = default;
+
 	Event(EventType givenType, EventData givenData){
 		this->data = givenData;
 		this->type = givenType;
 	};
-	
+
 	EventData getData(){
 		return this->data;
 	};

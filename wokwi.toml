@@ -2,4 +2,4 @@
 version = 1
 firmware = "build/t_8.bin"
 elf = "build/t_8.elf"
-
+gdbServerPort = 3333

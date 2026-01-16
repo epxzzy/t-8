@@ -6,7 +6,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "event.hpp"
-#include "events/types.hpp"
+#include "./types.hpp"
 
 typedef std::function<void(const Event *event)> ListenerCallback;
 typedef std::unordered_map<std::string, ListenerCallback> SubscriberMap;
@@ -65,9 +65,12 @@ public:
 		}
 
 		//call all
+		//TODO: FIX CRASH HERE
+		/*
 		for(auto pair: (Listeners.find(EventType::ALL))->second){
 			pair.second(&event);	
 		}
+		*/
 
 		xSemaphoreGive(mutex);
 	};

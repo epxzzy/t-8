@@ -2,8 +2,8 @@
 
 enum EventType: int {
 	ALL = -1,
-	HB,
-	LOG,
+	HB = 1,
+	LOG = 2,
 	EXIT,
 	CLOSE
 };

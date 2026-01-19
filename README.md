@@ -1,5 +1,5 @@
 # t-8
-handheld experiment
+handheld experiment and EDA-OOAD nightmare.
 
 
 

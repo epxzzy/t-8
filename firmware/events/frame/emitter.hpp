@@ -40,13 +40,13 @@ public:
 		xSemaphoreGive(mutex);
 	};
 
-	void unsubscribeAll(std::string subscriberName, ListenerCallback callback){
+	void unsubscribeAll(std::string subscriberName){
 		xSemaphoreTake(mutex, portMAX_DELAY);
 		this->Listeners[EventType::ALL].erase(subscriberName);
 		xSemaphoreGive(mutex);
 	};
 
-	void unsubscribe(std::string subscriberName, EventType type, ListenerCallback callback){
+	void unsubscribe(std::string subscriberName, EventType type){
 		xSemaphoreTake(mutex, portMAX_DELAY);
 		this->Listeners[type].erase(subscriberName);
 		xSemaphoreGive(mutex);
@@ -57,7 +57,6 @@ public:
 		xSemaphoreTake(mutex, portMAX_DELAY);
 
 		EventType typer = event.getType();
-		this->Listeners[typer];
 
 		//call subscribers	
 		for(auto pair: (Listeners.find(typer))->second){
@@ -65,12 +64,12 @@ public:
 		}
 
 		//call all
-		//TODO: FIX CRASH HERE
-		/*
-		for(auto pair: (Listeners.find(EventType::ALL))->second){
-			pair.second(&event);	
-		}
-		*/
+		//nullcheck
+		if(Listeners.count(EventType::ALL) != 0){
+			for(auto pair: (Listeners.find(EventType::ALL))->second){
+				pair.second(&event);	
+			}
+		}	
 
 		xSemaphoreGive(mutex);
 		delete static_cast<char*>(event.data.data);

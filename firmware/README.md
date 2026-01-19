@@ -1,25 +1,51 @@
+submodules:  
+small&single purpose hardware workers (GPIO scan, encoder read, display flush, network RX, etc.).
+
+`init()`
+`start()`
+`tick()`
+`stop()`
+`emit(event)`
+
+submodule manager:  
+owns and schedules submodules. centralizes lifecycle and ticking.
+
+`register(submodule)`
+`init_all()`
+`start(id)` / `stop(id)`
+`tick_all()`
+`emit(event)`
+`handleEvent(event)`
+
 subsystem:  
-all hardware stuff, emitting events. draw on screen.
-`emit()`
+aggregates submodules, emits raw events upward, executes draw/output intents downward.
 
-systemcontroller:
-listens events and triggers toolrunners.
+`init()`
+`tick()`
+`emit(event)`
+`handleEvent(event)`
 
-`handleevent()`
-`emit()`
+systemcontroller:  
+policy + routing layer. interprets events, decides active toolrunner, performs transitions.
 
-toolrunners:
-pick a tool and tick it. basically safety tool wrapper.
+`handleEvent(event)`
+`emit(event)`
+`transition(toolrunner)`
+
+toolrunner:  
+execution context/sandbox. owns lifecycle of the tool and mediates interaction with the system. pretty much a condom.
 
 `enter()`
 `tick()`
 `exit()`
+`emit(event)`
+`handleEvent(event)`
 
-tool:
-do something functional, listen for subsystem events, emit draw intents
+tool:  
+apps, freedom of logic and state.
 
 `enter()`
 `tick()`
 `exit()`
-`emit()`
-`handleevent()`
+`handleEvent(event)`
+`emit(drawintent OR event)`

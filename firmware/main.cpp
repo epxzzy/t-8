@@ -7,6 +7,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
+#include "registries/basicregistry.hpp"
 
 //#include "old/tasks/logTask.hpp"
 //#include "old/services/systemService.hpp"
@@ -23,6 +24,23 @@ void hello_task(void* arg) {
 
 extern "C" void app_main(void) {
 
+  typedef Registry<std::string, int> intreg; 
+  intreg reg;
+  reg.registeritem("firstnamer", 0);
+  reg.registeritem("seconder", 1);
+  reg.registeritem("thirter", 2);
+  reg.registeritem("foruder", 3);
+  reg.registeritem("vidth", 4);
+
+  for (auto it = reg.begin();it != reg.end() ; it++) {
+    std::string str = it->first;
+    int val = it->second; 
+    printf("sting: %s, imt: %d\n", str.data(), val);
+  }
+
+  
+// #9166e4c "i am so stupid, working example"
+/*
   EventEmitter emitter;          
 
   emitter.subscribe("heartbeat subscriber", EventType::HB, 
@@ -70,15 +88,6 @@ extern "C" void app_main(void) {
     vTaskDelay(pdMS_TO_TICKS(1000));
   }
 
-/*
-while (true) {
-  Event event = Event(
-    EventType::HB,
-    CreateHeartBeatEventData(true)
-  );
-  emitter.emit(event);
-  vTaskDelay(pdMS_TO_TICKS(1000));
-}
 */
 
 // #a3e1582 "half assed service attempt ill redo the system anyways"

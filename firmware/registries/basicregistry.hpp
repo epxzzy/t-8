@@ -5,15 +5,15 @@
 #include <string>
 #include <unordered_map>
 #include <optional>
+#include <map>
 
-//TODO: make allathis threadsafe like events
+//TODO: make alla this threadsafe like events
 template <typename Key = std::string, typename Value = void*>
 class Registry { 
 
 protected:
-    typedef std::unordered_map<Key, Value> hashmap;
+    typedef std::map<Key, Value> hashmap;
     hashmap map;
-
 public:
 
     Registry() {};
@@ -37,20 +37,12 @@ public:
     };
     //typedef typename evdatahashmap::iterator iterator;
     typedef typename hashmap::iterator iterator;
-    typedef typename hashmap::const_iterator const_iterator;
 
     iterator begin(){
         return map.begin();
     }
 
     iterator end(){
-        return map.end();
-    }
-
-    const_iterator begin() const {
-        return map.begin(); 
-    }
-    const_iterator end() const {
         return map.end();
     }
 

@@ -35,6 +35,7 @@ public:
         }
         return 0;
     };
+
     //typedef typename evdatahashmap::iterator iterator;
     typedef typename hashmap::iterator iterator;
 

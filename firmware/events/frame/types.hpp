@@ -1,13 +1,14 @@
 #pragma once
 
 enum EventType: int {
+	//tomfuckery, not bound to anything (-1)-100
 	ALL = -1,
 	HB = 1,
-	LOG = 2,
+	LOG,
 	EXIT,
 	CLOSE,
 
-	//submodules 100-200
+	//SubManager bound, 100-200
 	SUBMODALL = 100,
 	SUBMODREGISTER,
 	SUBMODUNREGISTER,
@@ -16,7 +17,9 @@ enum EventType: int {
 	SUBMODSTOP,
 	SUBMODSWAP,
 
-	//specific submodule stuff 200-300 sectioned into like 20 or something max
+	//SubModuleBound 200-?
+	
+	// virtual keyboard submodule
 	VKBR_ALL = 200,
 	VKBR_KEYUP,
 	VKBR_KEYDOWN,

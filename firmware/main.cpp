@@ -58,7 +58,6 @@ extern "C" void app_main(void) {
     [](const Event* ev) {
       LogData logdat = ExtractLogEventData(ev->data);
       printf("log: %s\n", logdat.message.data());
-      // outputs "log: ��" for whatever reason
     }
   );
 

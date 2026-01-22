@@ -1,8 +1,8 @@
 #pragma once
 
-#include "events/BasicEmitter.hpp"
-#include "events/frame/event.hpp"
-#include "events/frame/types.hpp"
+#include "Events/BasicEmitter.hpp"
+#include "Events/Frame/event.hpp"
+#include "Events/Frame/types.hpp"
 #include "Registries/BasicRegistry.hpp"
 #include "Internal/SubModule/BasicSubModule.hpp"
 
@@ -11,7 +11,7 @@ typedef Registry<std::string, BasicSubModule> subModReg;
 class SubManager {
 
 public:
-    EventEmitter subManEmitter;
+    BasicEmitter subManEmitter;
     subModReg subManReg;
 
     std::string registerMod(std::string name,BasicSubModule submod){
@@ -29,7 +29,7 @@ public:
     }
 
     BasicEmitter getEmitter(){
-        return this->getEmitter(); 
+        return this->subManEmitter; 
     }
 
     EventType getEventType(){

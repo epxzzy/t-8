@@ -1,7 +1,7 @@
 #pragma once
 
-#include "events/BasicEmitter.hpp"
-#include "events/frame/event.hpp"
+#include "Events/BasicEmitter.hpp"
+#include "Events/Frame/event.hpp"
 #include "Internal/SubManager/SubManager.hpp"
 
 class SubSystem {

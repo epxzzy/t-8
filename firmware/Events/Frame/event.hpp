@@ -4,7 +4,6 @@
 #include "./types.hpp"
 #include "./data.hpp"
 
-
 class Event {
 public:
 	EventData data;

@@ -2,6 +2,8 @@
 
 enum EventType: int {
 	//tomfuckery, not bound to anything (-1)-100
+	//ALL ignores the event scopes
+	//unlike 100 and 200 it should be used to return all 
 	ALL = -1,
 	HB = 1,
 	LOG,
@@ -9,13 +11,13 @@ enum EventType: int {
 	CLOSE,
 
 	//SubManager bound, 100-200
-	SUBMODALL = 100,
-	SUBMODREGISTER,
-	SUBMODUNREGISTER,
-	SUBMODINIT,
-	SUBMODSTART,
-	SUBMODSTOP,
-	SUBMODSWAP,
+	MODALL = 100,
+	MODREGISTERED,
+	MODUNREGISTERED,
+	MODINITED,
+	MODSTARTED,
+	MODSTOPED,
+	MODSWAPPED,
 
 	//SubModuleBound 200-?
 	
@@ -25,5 +27,8 @@ enum EventType: int {
 	VKBR_KEYDOWN,
 	VKBR_ENCODER_PRESS,
 	VKBR_ENCODER_TWIST,
+
+	// wifi shit maybe
 	
+
 };

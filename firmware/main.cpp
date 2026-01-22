@@ -1,9 +1,9 @@
 #include <cstdio>
 #include <stdio.h>
-#include "events/frame/data.hpp"
-#include "events/frame/event.hpp"
-#include "events/frame/emitter.hpp"
-#include "events/frame/types.hpp"
+#include "Events/Frame/data.hpp"
+#include "Events/Frame/event.hpp"
+#include "Events/Frame/emitter.hpp"
+#include "Events/Frame/types.hpp"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"

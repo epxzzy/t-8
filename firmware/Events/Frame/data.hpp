@@ -1,6 +1,6 @@
 #pragma once
 
-#include "events/frame/types.hpp"
+#include "Events/Frame/types.hpp"
 #include <cstddef>
 #include <cstdint>
 #include <stdint.h>

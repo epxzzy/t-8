@@ -1,7 +1,7 @@
 #pragma once
 
-#include "events/BasicEmitter.hpp"
-#include "events/frame/types.hpp"
+#include "Events/BasicEmitter.hpp"
+#include "Events/Frame/types.hpp"
 
 class BasicSubModule {
 

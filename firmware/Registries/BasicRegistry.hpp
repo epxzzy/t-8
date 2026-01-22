@@ -20,11 +20,11 @@ public:
 
     virtual ~Registry() {}; 
 
-	void registeritem(const Key& as, Value type){
+	void registerItem(const Key& as, Value type){
         this->map.insert_or_assign(as, type);
 	};
 
-	void unregisteritem(const Key& as){
+	void unregisterItem(const Key& as){
 		this->map.erase(as);
 	};
 

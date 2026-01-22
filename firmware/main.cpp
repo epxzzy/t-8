@@ -7,7 +7,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
-#include "registries/basicregistry.hpp"
+#include "Registries/BasicRegistry.hpp"
 
 //#include "old/tasks/logTask.hpp"
 //#include "old/services/systemService.hpp"

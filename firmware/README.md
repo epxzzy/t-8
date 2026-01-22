@@ -49,3 +49,5 @@ apps, freedom of logic and state.
 `exit()`
 `handleEvent(event)`
 `emit(drawintent OR event)`
+
+![alt text](./floworsum.png)

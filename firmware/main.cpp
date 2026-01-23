@@ -26,11 +26,11 @@ extern "C" void app_main(void) {
 
   typedef Registry<std::string, int> intreg; 
   intreg reg;
-  reg.registeritem("firstnamer", 0);
-  reg.registeritem("seconder", 1);
-  reg.registeritem("thirter", 2);
-  reg.registeritem("foruder", 3);
-  reg.registeritem("vidth", 4);
+  reg.registerItem("firstnamer", 0);
+  reg.registerItem("seconder", 1);
+  reg.registerItem("thirter", 2);
+  reg.registerItem("foruder", 3);
+  reg.registerItem("vidth", 4);
 
   for (auto it = reg.begin();it != reg.end() ; it++) {
     std::string str = it->first;

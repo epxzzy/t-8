@@ -42,3 +42,9 @@ inline EventData CreateLogEventData(std::string msg){
 inline LogData ExtractLogEventData(EventData dat){
  	return *static_cast<const LogData*>(dat.data);
 } 
+
+inline EventData CreateVoidEventData(EventType type){
+	return EventData{type, nullptr, sizeof(EventData)};
+}
+
+

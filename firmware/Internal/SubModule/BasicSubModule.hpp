@@ -14,12 +14,12 @@ public:
         return this->subModEmitter;
     }
 
-    void init();
-    void start();
-    void tick();
-    void stop();
+    virtual void init();
+    virtual void start();
+    virtual void tick();
+    virtual void stop();
 
-    EventType getEventType();
+    virtual EventType getEventType();
 
 protected:
 

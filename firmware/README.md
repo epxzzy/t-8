@@ -1,4 +1,6 @@
-submodules:  
+![alt text](./floworsum.png)
+
+### submodules:  
 small&single purpose hardware workers (GPIO scan, encoder read, display flush, network RX, etc.).
 
 `init()`
@@ -7,41 +9,42 @@ small&single purpose hardware workers (GPIO scan, encoder read, display flush, n
 `stop()`
 `emit(event)`
 
-submodule manager:  
+## submanager:  
 owns and schedules submodules. centralizes lifecycle and ticking.
 
 `register(submodule)`
 `init_all()`
 `start(id)` / `stop(id)`
 `tick_all()`
+`handleModEvent(event)`
 `emit(event)`
-`handleEvent(event)`
 
-subsystem:  
+# subsystem:  
 aggregates submodules, emits raw events upward, executes draw/output intents downward.
 
 `init()`
 `tick()`
-`emit(event)`
-`handleEvent(event)`
+`handleInternalEvent(event)`
+`handleExternalEvent(event)`
 
-systemcontroller:  
+
+## systemcontroller:  
 policy + routing layer. interprets events, decides active toolrunner, performs transitions.
 
-`handleEvent(event)`
+`handleRunnerEvent(event)`
 `emit(event)`
 `transition(toolrunner)`
 
-toolrunner:  
+### toolrunner:  
 execution context/sandbox. owns lifecycle of the tool and mediates interaction with the system. pretty much a condom.
 
 `enter()`
 `tick()`
 `exit()`
+`handleToolEvent(event)`
 `emit(event)`
-`handleEvent(event)`
 
-tool:  
+### tool:  
 apps, freedom of logic and state.
 
 `enter()`
@@ -50,4 +53,17 @@ apps, freedom of logic and state.
 `handleEvent(event)`
 `emit(drawintent OR event)`
 
-![alt text](./floworsum.png)
+
+
+### Notes: 
+events float up, policies sink down. events are stimuli while policies are responses.   
+any layer can emit events and any layer above that can inforce policies, only exception being `tool/submodule` and `subsystem`.  
+
+subsystem ticks everything. it can be considered the heart.
+
+i am NOT writing a GOD DAMNED KERNEL.
+
+
+
+
+

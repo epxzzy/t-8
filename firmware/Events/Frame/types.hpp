@@ -11,18 +11,24 @@ enum EventType: int {
 	CLOSE,
 
 	//SubManager bound, 100-200
-	MODALL = 100,
-	MODREGISTERED,
-	MODUNREGISTERED,
-	MODINITED,
-	MODSTARTED,
-	MODSTOPED,
-	MODSWAPPED,
+	MOD_ALL = 100,
+	MOD_REGISTERED,
+	MOD_UNREGISTERED,
+	MOD_INITED,
+	MOD_STARTED,
+	MOD_STOPED,
+	MOD_SWAPPED,
 
 	//SubModuleBound 200-?
+	WIFI_ALL = 200,
+    WIFI_CONNECTED,
+    WIFI_DISCONNECTED,
+    WIFI_RX,
+    WIFI_ERROR,
+	//TODO: doublecheck and correct these mfs	
 	
 	// virtual keyboard submodule
-	VKBR_ALL = 200,
+	VKBR_ALL = 220,
 	VKBR_KEYUP,
 	VKBR_KEYDOWN,
 	VKBR_ENCODER_PRESS,

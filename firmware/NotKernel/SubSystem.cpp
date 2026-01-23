@@ -2,11 +2,12 @@
 #include "NotKernel/SubModuleRegistry.hpp"
 #include "Events/Frame/types.hpp"
 #include "Events/Frame/event.hpp"
+#include "nvs_flash.h"
 
 typedef Registry<std::string, BasicSubModule> submodregistry;
 
 void SubSystem::init(){
-
+    nvs_flash_init();
     /*
      * INTERNAL 
     */    

@@ -16,5 +16,6 @@ idf_component_register(
         esp_event
         esp_websocket_client
         log
+        esp_wifi 
 )
 

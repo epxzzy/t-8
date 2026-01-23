@@ -1,6 +1,6 @@
 #pragma once
 
-#include "events/frame/data.hpp"
+#include "Events/Frame/data.hpp"
 #include <functional>
 #include <string>
 #include <unordered_map>

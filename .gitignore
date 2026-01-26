@@ -69,6 +69,10 @@
 build/*
 
 firmware/build/*
+firmware/Config.hpp
+
+.gitignore
+
 managed_components/*
 
 ### fuckin cache

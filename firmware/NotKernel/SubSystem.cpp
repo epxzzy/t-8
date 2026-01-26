@@ -48,12 +48,12 @@ void SubSystem::tick(){
 void SubSystem::handleInternalEvent(Event ev){
     switch (ev.getType()) {
 
-        case MODSTARTED: 
+        case MOD_STARTED: 
             //this->submanager->start(ev.getData().data.name);
             //im fuckin stupid this need to move to internals once i do get around to doing that
             break;
 
-        case MODSTOPED:
+        case MOD_STOPED:
             //this->submanager->stop(ev.getData().data.name);
             break;
 

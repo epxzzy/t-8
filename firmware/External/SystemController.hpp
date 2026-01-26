@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Directive/directive.hpp"
 #include "Events/BasicEmitter.hpp"
 #include "Events/Frame/emitter.hpp"
 
@@ -8,9 +9,6 @@ class SystemController {
 public:
     BasicEmitter controllerEmitter;
     
-    //todo: make some command system, kinda like the event protocol    
-    //need something that sinks down and can be picked up by any members
-    //would resolve the need to have fuck ton of methods
     void output(std::string string);
 
     BasicEmitter getEmitter(){
@@ -21,10 +19,19 @@ public:
         return EventType::ALL; 
     }
 
+    DirectiveScope getScope(){
+        return DirectiveScope::SYSTEMCONTROLLER;
+    }
+
+    bool canHandle(Directive dv){
+        return dv.scope == this->getScope();
+    }
+
+
 protected:
 
 private:
-    void handleTheCommandSystemThatDoesNotFuckingExistAsOfThisCommitSoIWillJustUseEventsAsAnPlaceHolder(Event ev);
+    void handleOrSink(Directive ev);
     void handleExternalEvent(Event ev);
 
 };

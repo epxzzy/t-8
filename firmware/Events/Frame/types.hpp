@@ -7,6 +7,7 @@ enum EventType: int {
 	ALL = -1,
 	HB = 1,
 	LOG,
+	ERROR,
 	EXIT,
 	CLOSE,
 

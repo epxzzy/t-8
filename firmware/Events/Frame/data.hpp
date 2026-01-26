@@ -43,6 +43,22 @@ inline LogData ExtractLogEventData(EventData dat){
  	return *static_cast<const LogData*>(dat.data);
 } 
 
+//test log event stuff
+struct ErrorData{
+	std::string msg;
+};
+constexpr size_t ERROR_SIZE = sizeof(ERROR_SIZE);
+
+inline EventData CreateErrorEventData(std::string msg){
+	ErrorData* dat = new ErrorData{msg};
+	return EventData{EventType::LOG, dat, ERROR_SIZE};
+}
+
+inline ErrorData ExtractErrorEventData(EventData dat){
+ 	return *static_cast<const ErrorData*>(dat.data);
+} 
+
+//void
 inline EventData CreateVoidEventData(EventType type){
 	return EventData{type, nullptr, sizeof(EventData)};
 }

@@ -1,5 +1,5 @@
 # t-8
-handheld experiment and MVP-EDA-OOAD nightmare.
+handheld experiment and systems design nightmare.
 
 
 

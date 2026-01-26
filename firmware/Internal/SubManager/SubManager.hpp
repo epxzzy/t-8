@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Directive/types.hpp"
 #include "Events/BasicEmitter.hpp"
 #include "Events/Frame/event.hpp"
 #include "Events/Frame/types.hpp"
@@ -26,6 +27,14 @@ public:
 
     subModReg acquireRegistry(){
         return this->subManReg;
+    }
+
+    DirectiveScope getScope(){
+        return DirectiveScope::SUBMANAGER;
+    }
+
+    bool canHandle(Directive dv){
+        return dv.scope == this->getScope();
     }
 
     BasicEmitter getEmitter(){
@@ -96,6 +105,7 @@ private:
         //TODO: create and bind events to start stop and else.
         //so the tools can fuckin do shit
     };
+    void handleOrSink(Directive dv);
 
     void emit(Event ev){
         this->subManEmitter.emit(ev);

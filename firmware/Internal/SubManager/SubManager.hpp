@@ -4,16 +4,25 @@
 #include "Events/BasicEmitter.hpp"
 #include "Events/Frame/event.hpp"
 #include "Events/Frame/types.hpp"
+#include "Interfaces/IDirectiveNode.hpp"
+#include "Interfaces/IEmitterNode.hpp"
 #include "Registries/BasicRegistry.hpp"
 #include "Internal/SubModule/BasicSubModule.hpp"
 
 typedef Registry<std::string, BasicSubModule> subModReg;
 
-class SubManager {
+class SubManager: public IEmitterNode, public IDirectiveNode {
 
 public:
-    BasicEmitter subManEmitter;
     subModReg subManReg;
+
+    EventType getEventType(){
+        return EventType::ALL; 
+    }
+
+    DirectiveScope getScope(){
+        return DirectiveScope::SUBMANAGER;
+    }
 
     std::string registerMod(std::string name,BasicSubModule submod){
         this->subManReg.registerItem(name, submod); 
@@ -27,22 +36,6 @@ public:
 
     subModReg acquireRegistry(){
         return this->subManReg;
-    }
-
-    DirectiveScope getScope(){
-        return DirectiveScope::SUBMANAGER;
-    }
-
-    bool canHandle(Directive dv){
-        return dv.scope == this->getScope();
-    }
-
-    BasicEmitter getEmitter(){
-        return this->subManEmitter; 
-    }
-
-    EventType getEventType(){
-        return EventType::ALL; 
     }
 
     void initMods(){
@@ -107,7 +100,4 @@ private:
     };
     void handleOrSink(Directive dv);
 
-    void emit(Event ev){
-        this->subManEmitter.emit(ev);
-    }
 };

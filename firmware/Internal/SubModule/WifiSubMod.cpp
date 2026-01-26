@@ -44,17 +44,9 @@ void WiFiSubModule::start() {
     esp_wifi_start();
 }
 
-void WiFiSubModule::tick() {
-    //empty override so things dont fuck themselves
-}
-
 void WiFiSubModule::stop() {
     esp_wifi_stop();
     connected = false;
-}
-
-EventType WiFiSubModule::getEventType() {
-    return EventType::WIFI_ALL;
 }
 
 void WiFiSubModule::eventTrampoline(
@@ -86,7 +78,7 @@ void WiFiSubModule::handleWifiEvent(
             EventType::WIFI_DISCONNECTED,
             CreateVoidEventData(EventType::WIFI_DISCONNECTED)
         );
-        subModEmitter.emit(eventtoPoste);
+        this->emit(eventtoPoste);
         return;
     }
     if (base == IP_EVENT && id == IP_EVENT_STA_GOT_IP) {
@@ -97,7 +89,8 @@ void WiFiSubModule::handleWifiEvent(
             EventType::WIFI_CONNECTED,
             CreateVoidEventData(EventType::WIFI_CONNECTED)
         );
-        subModEmitter.emit(eventtoPoste);
+        this->emit(eventtoPoste);
+
         return;
     }
 

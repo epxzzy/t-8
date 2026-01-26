@@ -3,17 +3,13 @@
 #include "Directive/directive.hpp"
 #include "Events/BasicEmitter.hpp"
 #include "Events/Frame/emitter.hpp"
+#include "Interfaces/IDirectiveNode.hpp"
+#include "Interfaces/IEmitterNode.hpp"
 
-class SystemController {
+class SystemController: public IEmitterNode, public IDirectiveNode {
 
 public:
-    BasicEmitter controllerEmitter;
-    
     void output(std::string string);
-
-    BasicEmitter getEmitter(){
-        return this->controllerEmitter; 
-    }
 
     EventType getEventType(){
         return EventType::ALL; 
@@ -22,11 +18,6 @@ public:
     DirectiveScope getScope(){
         return DirectiveScope::SYSTEMCONTROLLER;
     }
-
-    bool canHandle(Directive dv){
-        return dv.scope == this->getScope();
-    }
-
 
 protected:
 

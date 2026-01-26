@@ -4,24 +4,17 @@
 #include "Directive/types.hpp"
 #include "Events/BasicEmitter.hpp"
 #include "Events/Frame/types.hpp"
+#include "Interfaces/IDirectiveNode.hpp"
+#include "Interfaces/IEmitterNode.hpp"
 
-class BasicSubModule {
+class BasicSubModule: public IEmitterNode, public IDirectiveNode {
 
 public:
-    BasicEmitter subModEmitter;
     
     BasicSubModule(){};
 
-    BasicEmitter getEmitter(){
-        return this->subModEmitter;
-    }
-
     DirectiveScope getScope(){
         return DirectiveScope::SUBMODULE;
-    }
-
-    bool canHandle(Directive dv){
-        return dv.scope == this->getScope();
     }
 
     virtual void init();
@@ -33,10 +26,5 @@ public:
     virtual EventType getEventType();
 
 protected:
-
-private:
-    void emit(Event ev){
-        this->subModEmitter.emit(ev);
-    };
 
 };

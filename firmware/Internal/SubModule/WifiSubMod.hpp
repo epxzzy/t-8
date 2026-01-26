@@ -1,21 +1,25 @@
 #pragma once
 
 #include "./BasicSubModule.hpp"
+#include "Interfaces/IEmitterNode.hpp"
 #include "esp_event_base.h"
 
 struct WiFiConfig;
 
-class WiFiSubModule : public BasicSubModule {
+class WiFiSubModule : public BasicSubModule{
 
 public:
     WiFiSubModule();
 
     void init() override;
     void start() override;
-    void tick() override;
+    void tick() override {};
+    //empty override so things dont fuck themselves
     void stop() override;
 
-    EventType getEventType() override;
+    EventType getEventType() override {
+        return EventType::WIFI_ALL;
+    }
 
 private:
     bool connected = false;

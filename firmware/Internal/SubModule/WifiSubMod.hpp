@@ -20,6 +20,12 @@ public:
     EventType getEventType() override {
         return EventType::WIFI_ALL;
     }
+    DirectiveScope getScope() override {
+        return DirectiveScope::SUBMODULE;
+    };
+    void emit(Event ev) override {
+        (this->getEmitter()).emit(ev);
+    } 
 
 private:
     bool connected = false;
@@ -37,6 +43,7 @@ private:
         int32_t id,
         void* data
     );
-
+    void handleSubModuleEvent(const Event ev)  {};
+    void handleOrSink(Directive dv) override {};
 
 };

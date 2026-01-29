@@ -4,7 +4,7 @@
 #include "Events/Frame/event.hpp"
 #include "nvs_flash.h"
 
-typedef Registry<std::string, BasicSubModule> submodregistry;
+typedef Registry<std::string, BasicSubModule*> submodregistry;
 
 void SubSystem::init(){
     nvs_flash_init();
@@ -16,14 +16,14 @@ void SubSystem::init(){
 
     for (auto it = regis.begin();it != regis.end() ; it++) {
         std::string str = it->first;
-        BasicSubModule val = it->second; 
+        BasicSubModule* val = it->second; 
 
-        this->submanager.registerMod(it->first, it->second);
+        this->submanager.registerMod(str, val);
     } 
 
     this->submanager.initMods();
 
-    this->submanager.getEmitter.subscribe(
+    this->submanager.getEmitter().subscribe(
         "SubManager",
         this->submanager.getEventType(),
         [this](const Event* ev) {

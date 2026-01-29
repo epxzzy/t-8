@@ -1,10 +1,10 @@
 #pragma once
 
 #include <stdint.h>
-#include "./Frame/data.hpp"
-#include "./Frame/emitter.hpp"
-#include "./Frame/event.hpp"
-#include "./Frame/type.hpp"
+#include "Events/Frame/data.hpp"
+#include "Events/Frame/emitter.hpp"
+#include "Events/Frame/event.hpp"
+#include "Events/Frame/types.hpp"
 
 
 class BasicEmitter: public EventEmitter {

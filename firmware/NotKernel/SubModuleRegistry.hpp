@@ -1,15 +1,16 @@
 #pragma once
 
+#include "Internal/SubModule/WifiSubMod.hpp"
 #include "Registries/BasicRegistry.hpp"
 #include "Internal/SubModule/BasicSubModule.hpp"
 
-typedef Registry<std::string, BasicSubModule> reg;
+typedef Registry<std::string, BasicSubModule*> reg;
 
 static reg thereg;
 
 reg registerShit(){
-    
-    thereg.registerItem("basic", BasicSubModule());
+    WiFiSubModule* wifiMod = new WiFiSubModule(); 
+    thereg.registerItem("wifi", wifiMod);
 
 
     /*

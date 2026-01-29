@@ -16,14 +16,16 @@ public:
     DirectiveScope getScope(){
         return DirectiveScope::SUBMODULE;
     }
+    
+    virtual EventType getEventType() = 0;
 
-    virtual void init();
-    virtual void start();
-    virtual void tick();
-    virtual void stop();
-    virtual void handleOrSink(Directive dv);
+    virtual void init() = 0;
+    virtual void start() = 0;
+    virtual void tick() = 0;
+    virtual void stop() = 0;
+    virtual void handleOrSink(Directive dv) = 0;
 
-    virtual EventType getEventType();
+
 
 protected:
 

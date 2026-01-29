@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Events/Frame/data.hpp"
+#include "Internal/SubModule/BasicSubModule.hpp"
 #include <functional>
 #include <string>
 #include <unordered_map>
@@ -28,12 +29,12 @@ public:
 		this->map.erase(as);
 	};
 
-    Value* acquire(const Key& as){
-        typename hashmap::iterator founded =  map.find(as);
+    std::optional<std::reference_wrapper<Value>> acquire(Key& as){
+        typename hashmap::iterator founded = map.find(as.data());
         if (founded != map.end()) {
-            return &founded->second;
+            return std::ref(founded->second);
         }
-        return 0;
+        return std::nullopt;
     };
 
     //typedef typename evdatahashmap::iterator iterator;

@@ -6,15 +6,19 @@
 
 class IEmitterNode {
 public:
-    BasicEmitter Emitter;
-
     BasicEmitter& getEmitter(){
         return this->Emitter;
     };
 
-    EventType getEventType();
+    virtual EventType getEventType() = 0;
 
-    void emit(Event ev){
-        this->getEmitter().emit(ev);
+    virtual void emit(Event ev){
+        (this->getEmitter()).emit(ev);
     }
+
+    virtual ~IEmitterNode() = default;
+
+private:
+    BasicEmitter Emitter;
+
 };

@@ -4,6 +4,7 @@
 #include "Events/Frame/event.hpp"
 #include "Events/Frame/emitter.hpp"
 #include "Events/Frame/types.hpp"
+#include "NotKernel/SubSystem.hpp"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
@@ -23,7 +24,13 @@ void hello_task(void* arg) {
 }
 
 extern "C" void app_main(void) {
+  SubSystem themotherfuckingsystem;
+  themotherfuckingsystem.init();
+  for(;;){
+    themotherfuckingsystem.tick();
+  }
 
+/*
   typedef Registry<std::string, int> intreg; 
   intreg reg;
   reg.registerItem("firstnamer", 0);
@@ -37,7 +44,8 @@ extern "C" void app_main(void) {
     int val = it->second; 
     printf("sting: %s, imt: %d\n", str.data(), val);
   }
-
+*/
+  
   
 // #9166e4c "i am so stupid, working example"
 /*

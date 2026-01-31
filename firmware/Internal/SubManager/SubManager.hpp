@@ -77,9 +77,8 @@ public:
         BasicSubModule* modular = exists->get();
         BasicEmitter modularemitter = modular->getEmitter();
 
-        modularemitter.subscribe(
-            "SubManager", modular->getEventType(),
-            [this](const Event *ev) { this->handleSubModuleEvent(*ev); }
+        modularemitter.unsubscribe(
+            "SubManager", modular->getEventType()
         );
 
         modular->stop();            

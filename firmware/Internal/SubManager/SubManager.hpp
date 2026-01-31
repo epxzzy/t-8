@@ -92,13 +92,13 @@ private:
     // TODO: create and bind events to start stop and else.
     // so the tools can fuckin do shit
     switch (ev.type) {
-    case EventType::LOG: {
-      // any specific case to be handled here
-    } break;
-    default: {
-      this->emit(ev);
-      // TODO: ide error, figure out why inheritance is being a bitch
-    }
+      case EventType::LOG: {
+        // any specific case to be handled here
+      } break;
+      default: {
+        this->emit(ev);
+        // ide error, lsp issue
+      }
     }
   };
   void handleOrSink(Directive dv);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Events/Frame/data.hpp"
+#include "Common/data.hpp"
 #include "Internal/SubModule/BasicSubModule.hpp"
 #include <functional>
 #include <string>

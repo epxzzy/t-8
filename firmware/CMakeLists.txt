@@ -2,7 +2,7 @@ idf_component_register(
     SRCS 
         "main.cpp"
         
-        "Events/Frame/data.hpp"
+        "Common/data.hpp"
         "Events/Frame/emitter.hpp"
         "Events/Frame/event.hpp"
         "Events/Frame/types.hpp"

@@ -6,10 +6,9 @@
 #include "Interfaces/IDirectiveNode.hpp"
 #include "Interfaces/IEmitterNode.hpp"
 
-class SystemController: public IEmitterNode, public IDirectiveNode {
-
+class SystemController: public IDirectiveNode<SystemController>, public IEmitterNode {
 public:
-    void output(std::string string);
+    using IDirectiveNode<SystemController>::registerHandler;
 
     EventType getEventType(){
         return EventType::ALL; 
@@ -19,10 +18,26 @@ public:
         return DirectiveScope::SYSTEMCONTROLLER;
     }
 
+    SystemController(){
+        IDirectiveNode<SystemController>::registerHandler(
+            DirectiveType::GENERIC_OUTPUT,
+            [](SystemController& node, const Directive& dv){
+                auto& self = static_cast<SystemController&>(node);
+                return self.outputGeneric(dv);
+            }
+        );
+    }
+
+    //void output(std::string string);
+    bool outputGeneric(const Directive& dv);
+
 protected:
 
 private:
-    void handleOrSink(Directive ev);
+    bool additionalHandling(Directive& ev){
+        return false;        
+        //TODO: generate event here prob idk just somehow tell subsystem that directive cant be handled lmao
+    };
     void handleExternalEvent(Event ev);
 
 };

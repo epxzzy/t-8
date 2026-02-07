@@ -19,6 +19,7 @@ enum DirectiveType: int {
   //systemcontroller bound
 
   TRANSITION, 
+  GENERIC_OUTPUT,
 
   //toolrunner bound
   
@@ -30,7 +31,7 @@ enum DirectiveType: int {
   /*
    * tool also(for now) does not need to be commanded.
    * runner/controller is supposed to do that.
-   * this list may expand with special "godobject" tools like alarms, rtcs, etc
+   * this list may expand with special "godobject" tools like alarms, rtc, etc
   */
 
 };

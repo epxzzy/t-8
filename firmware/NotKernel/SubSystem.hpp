@@ -4,13 +4,14 @@
 #include "Directive/types.hpp"
 #include "Events/BasicEmitter.hpp"
 #include "Events/Frame/event.hpp"
+#include "External/SystemController.hpp"
 #include "Internal/SubManager/SubManager.hpp"
 
 class SubSystem {
 
 public:
     SubManager submanager;
-
+    SystemController syscontroller;
     void init();
     void tick();
 
@@ -19,7 +20,7 @@ protected:
 private:
     void handleInternalEvent(Event ev);
     void handleExternalEvent(Event ev);
-    void sinkInternal(Directive dv);
-    void sinkExternal(Directive dv);
+    bool sinkInternal(Directive& dv);
+    bool sinkExternal(Directive& dv);
 
 };

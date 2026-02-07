@@ -1,6 +1,6 @@
 #include "WifiSubMod.hpp"
 #include "Config.hpp"
-#include "Events/Frame/data.hpp"
+#include "Common/data.hpp"
 #include "Events/Frame/types.hpp"
 #include "esp_netif_types.h"
 #include "esp_wifi.h"
@@ -76,7 +76,7 @@ void WiFiSubModule::handleWifiEvent(
 
         Event eventtoPoste = Event(
             EventType::WIFI_DISCONNECTED,
-            CreateVoidEventData(EventType::WIFI_DISCONNECTED)
+            CreateVoidDataPacket(EventType::WIFI_DISCONNECTED)
         );
         this->emit(eventtoPoste);
         return;
@@ -87,7 +87,7 @@ void WiFiSubModule::handleWifiEvent(
 
         Event eventtoPoste = Event(
             EventType::WIFI_CONNECTED,
-            CreateVoidEventData(EventType::WIFI_CONNECTED)
+            CreateVoidDataPacket(EventType::WIFI_CONNECTED)
         );
         this->emit(eventtoPoste);
 

@@ -1,4 +1,5 @@
 #include "NotKernel/SubSystem.hpp"
+#include "Directive/directive.hpp"
 #include "NotKernel/SubModuleRegistry.hpp"
 #include "Events/Frame/types.hpp"
 #include "Events/Frame/event.hpp"
@@ -38,6 +39,14 @@ void SubSystem::init(){
     /*
      * EXTERNAL
     */    
+
+    this->syscontroller.getEmitter().subscribe(
+        "SystemController",
+        this->syscontroller.getEventType(),
+        [this](const Event* ev) {
+            this->handleExternalEvent(*ev);
+        }
+    );
     
 }
 
@@ -58,6 +67,14 @@ void SubSystem::handleInternalEvent(Event ev){
             break;
 
         default: 
+
             break;
     }
+}
+
+bool SubSystem::sinkExternal(Directive& dv){
+    return this->syscontroller.handle(dv);
+}
+bool SubSystem::sinkInternal(Directive& dv){
+    return this->submanager.handle(dv);
 }

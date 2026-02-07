@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <stdio.h>
-#include "Events/Frame/data.hpp"
+#include "Common/data.hpp"
 #include "Events/Frame/event.hpp"
 #include "Events/Frame/emitter.hpp"
 #include "Events/Frame/types.hpp"
@@ -53,7 +53,7 @@ extern "C" void app_main(void) {
 
   emitter.subscribe("heartbeat subscriber", EventType::HB, 
     [](const Event* ev) {
-      HeartBeatData hbdat = ExtractHeartBeatEventData(ev->data);
+      HeartBeatData hbdat = ExtractHeartBeatDataPacket(ev->data);
       printf("heartbeat: %s\n", 
         hbdat.alive ?
           "heartbeat: mfs still alive" :
@@ -64,7 +64,7 @@ extern "C" void app_main(void) {
 
   emitter.subscribe("log subscriber", EventType::LOG, 
     [](const Event* ev) {
-      LogData logdat = ExtractLogEventData(ev->data);
+      LogData logdat = ExtractLogDataPacket(ev->data);
       printf("log: %s\n", logdat.message.data());
     }
   );
@@ -81,14 +81,14 @@ extern "C" void app_main(void) {
       int selection = (i/2) % 4;
       eventtoPoste = Event(
         EventType::LOG,
-        CreateLogEventData(msg[selection])
+        CreateLogDataPacket(msg[selection])
       );
     }
     else {
       bool boo = (i/2) % 2 == 0 ? true: false;
       eventtoPoste = Event(
         EventType::HB,
-        CreateHeartBeatEventData(boo)
+        CreateHeartBeatDataPacket(boo)
       );
     }
     emitter.emit(eventtoPoste);

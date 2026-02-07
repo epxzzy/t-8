@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Common/data.hpp"
 #include "Directive/types.hpp"
 #include <string>
 
@@ -10,7 +11,7 @@ public:
 
     std::string targetName = "";
 	//optional, to differentiate between mutliple children
-    const void* data = nullptr;
+    DataPacket data;
 	//optional data
 	
 	Directive() = default;
@@ -26,14 +27,14 @@ public:
 		this->targetName = tarName;
 	};
 
-	Directive(DirectiveType givenType, DirectiveScope givenScope, std::string tarName, void* dat){
+	Directive(DirectiveType givenType, DirectiveScope givenScope, std::string tarName, DataPacket dat){
 		this->type = givenType;
 		this->scope = givenScope;
 		this->targetName = tarName;
 		this->data = dat;
 	};
 
-	Directive(DirectiveType givenType, DirectiveScope givenScope, void* dat){
+	Directive(DirectiveType givenType, DirectiveScope givenScope, DataPacket dat){
 		this->type = givenType;
 		this->scope = givenScope;
 		this->data = dat;

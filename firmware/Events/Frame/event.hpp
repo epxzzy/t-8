@@ -2,21 +2,21 @@
 
 #include <stdint.h>
 #include "./types.hpp"
-#include "./data.hpp"
+#include "Common/data.hpp"
 
 class Event {
 public:
-	EventData data;
+	DataPacket data;
 	EventType type;
 
 	Event() = default;
 
-	Event(EventType givenType, EventData givenData){
+	Event(EventType givenType, DataPacket givenData){
 		this->data = givenData;
 		this->type = givenType;
 	};
 
-	EventData getData(){
+	DataPacket getData(){
 		return this->data;
 	};
 	EventType getType(){

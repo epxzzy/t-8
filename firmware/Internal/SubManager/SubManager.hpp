@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Common/data.hpp"
 #include "Directive/types.hpp"
 #include "Events/Frame/types.hpp"
 #include "Interfaces/IDirectiveNode.hpp"
@@ -9,15 +10,61 @@
 
 typedef Registry<std::string, BasicSubModule*> subModReg;
 
-class SubManager : public IEmitterNode, public IDirectiveNode {
+class SubManager : public IEmitterNode, public IDirectiveNode<SubManager> {
 
 public:
+  using IDirectiveNode<SubManager>::registerhandler;
+
   subModReg subManReg;
 
   EventType getEventType() { return EventType::ALL; }
 
   DirectiveScope getScope() { return DirectiveScope::SUBMANAGER; }
 
+  SubManager(){
+
+    IDirectiveNode<SubManager>::registerHandler(
+      DirectiveType::START_MOD,
+      [](SubManager& node, const Directive& dv){
+        auto& self = static_cast<SubManager&>(node);
+        
+        self.start(dv.targetName.data());
+        return true;
+      }
+    ); 
+
+    IDirectiveNode<SubManager>::registerHandler(
+      DirectiveType::STOP_MOD,
+      [](SubManager& node, const Directive& dv){
+        auto& self = static_cast<SubManager&>(node);
+        
+        self.stop(dv.targetName.data());
+        return true;
+      }
+    ); 
+
+    IDirectiveNode<SubManager>::registerHandler(
+      DirectiveType::REGISTER_MOD,
+      [](SubManager& node, const Directive& dv){
+        auto& self = static_cast<SubManager&>(node);
+        
+        self.registerMod(dv.targetName.data(), ExtractModRegDataPacket(dv.data).module);
+        return true;
+      }
+    ); 
+
+    IDirectiveNode<SubManager>::registerHandler(
+      DirectiveType::UNREGISTER_MOD,
+      [](SubManager& node, const Directive& dv){
+        auto& self = static_cast<SubManager&>(node);
+        
+        self.unregisterMod(dv.targetName.data());
+        return true;
+      }
+    ); 
+
+  }
+  
   std::string registerMod(std::string name, BasicSubModule* submod) {
     this->subManReg.registerItem(name, submod);
     return name;
@@ -100,5 +147,10 @@ private:
       }
     }
   };
+
+  bool additionalHandling(const Directive& dv){
+    //TODO: do child selecting via directive data specifically set for multi-child parents
+    return false;
+  }
   void handleOrSink(Directive dv);
 };

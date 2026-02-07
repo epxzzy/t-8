@@ -7,6 +7,10 @@
 #include <functional>
 #include <string>
 
+
+//TODO: make data packets its down mother fucking class
+//also please for the love of god use some generic fuckery here PLEASS
+
 struct DataPacket {
 	int32_t id;
 	void* data;
@@ -64,3 +68,23 @@ inline DataPacket CreateVoidDataPacket(EventType type){
 }
 
 
+//mod reg data stuff
+
+class BasicSubModule;
+//circular dependency hack
+
+struct ModRegData{
+	std::string targetName;
+	BasicSubModule& module;
+};
+
+constexpr size_t REGMOD_SIZE = sizeof(ModRegData);
+
+inline DataPacket CreateModRegDataPacket(std::string msg, BasicSubModule& module){
+	ModRegData* dat = new ModRegData{msg, module};
+	return DataPacket{8, dat, REGMOD_SIZE};
+}
+
+inline ModRegData ExtractModRegDataPacket(DataPacket dat){
+ 	return *static_cast<const ModRegData*>(dat.data);
+} 

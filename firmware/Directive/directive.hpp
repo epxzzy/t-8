@@ -41,15 +41,15 @@ public:
 	};
 
 	DirectiveScope getScope(){
-		return this->scope;
+		return scope;
 	};
 
 	DirectiveType getType(){
-		return this->type;
+		return type;
 	};
 
-	void* getData(){
-		return &this->data;
+	DataPacket getData(){
+		return data;
 	};
 
 	std::string getTarget(){

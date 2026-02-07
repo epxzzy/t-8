@@ -1,5 +1,6 @@
 #include "SystemController.hpp"
 #include "Directive/directive.hpp"
+#include "Common/data.hpp"
 #include "Events/Frame/event.hpp"
 #include "Events/Frame/types.hpp"
 #include <cstdio>
@@ -10,9 +11,8 @@ void SystemController::output(std::string string){
 }
 */
 
-
 bool SystemController::outputGeneric(const Directive& dv){
-    printf("generic out: %s", extract(dv.getData()));
+    printf("generic out: %s", ExtractLogDataPacket(dv.data).message.data());
     return true;
 }
 
@@ -22,7 +22,6 @@ void SystemController::handleExternalEvent(Event ev){
 
 /*
 void SystemController::additionalHandling(Directive& dv){
-    /*
     EventType type = dv.getType();
 
 
@@ -30,6 +29,5 @@ void SystemController::additionalHandling(Directive& dv){
         LogData logdat = ExtractLogDataPacket(ev.getData());
         this->output(logdat.message);
     }
-//}
-
+}
 */

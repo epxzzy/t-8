@@ -5,6 +5,7 @@
 #include "Events/Frame/emitter.hpp"
 #include "Interfaces/IDirectiveNode.hpp"
 #include "Interfaces/IEmitterNode.hpp"
+#include <functional>
 
 class SystemController: public IDirectiveNode<SystemController>, public IEmitterNode {
 public:

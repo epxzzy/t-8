@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Directive/directive.hpp"
-#include "<functional>"
+#include <functional>
 #include <map>
 
 template <typename T>
@@ -35,7 +35,7 @@ public:
         return false;
     }
 
-    bool canHandle(Directive dv){
+    bool canHandle(Directive& dv){
         return dv.scope == this->getScope();
     }
 

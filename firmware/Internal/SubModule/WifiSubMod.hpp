@@ -25,6 +25,10 @@ public:
         (this->getEmitter()).emit(ev);
     } 
 
+    bool handle(Directive* dv){
+        return false;
+    }
+
 private:
     bool connected = false;
     int retryCount = 0;

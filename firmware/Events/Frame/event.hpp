@@ -16,10 +16,10 @@ public:
 		this->type = givenType;
 	};
 
-	DataPacket getData(){
+	DataPacket getData() const {
 		return this->data;
 	};
-	EventType getType(){
+	EventType getType() const {
 		return this->type;
 	};
 

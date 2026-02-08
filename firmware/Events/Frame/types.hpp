@@ -38,4 +38,10 @@ enum EventType: int {
 	// wifi shit maybe
 	
 
+	//systemcontroller bound 500-?
+	TOOL_SUCCESS = 503,
+	TOOL_FAILURE,
+	TOOL_LIMBO,
+	TOOL_IHADENOUGH,
+
 };

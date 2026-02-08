@@ -17,7 +17,7 @@ public:
         return false;
     }
    
-    bool handle(const Directive& dv){
+    bool handle(Directive& dv){
         if(!canHandle(dv)){
             return additionalHandling(dv);
         }

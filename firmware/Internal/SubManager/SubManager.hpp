@@ -13,7 +13,7 @@ typedef Registry<std::string, BasicSubModule*> subModReg;
 class SubManager : public IEmitterNode, public IDirectiveNode<SubManager> {
 
 public:
-  using IDirectiveNode<SubManager>::registerhandler;
+  using IDirectiveNode<SubManager>::registerHandler;
 
   subModReg subManReg;
 
@@ -143,7 +143,10 @@ private:
       } break;
       default: {
         this->emit(ev);
-        // ide error, lsp issue
+        /*
+         * Cannot initialize object parameter of type 'IEmitterNode' with an expression of type 'SubManager'
+        */
+        //ide error, lsp issue
       }
     }
   };

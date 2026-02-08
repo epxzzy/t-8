@@ -18,8 +18,8 @@ public:
 protected:
 
 private:
-    void handleInternalEvent(Event ev);
-    void handleExternalEvent(Event ev);
+    void handleInternalEvent(const Event* ev);
+    void handleExternalEvent(const Event* ev);
     bool sinkInternal(Directive& dv);
     bool sinkExternal(Directive& dv);
 

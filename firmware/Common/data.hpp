@@ -75,12 +75,12 @@ class BasicSubModule;
 
 struct ModRegData{
 	std::string targetName;
-	BasicSubModule& module;
+	BasicSubModule* module;
 };
 
 constexpr size_t REGMOD_SIZE = sizeof(ModRegData);
 
-inline DataPacket CreateModRegDataPacket(std::string msg, BasicSubModule& module){
+inline DataPacket CreateModRegDataPacket(std::string msg, BasicSubModule* module){
 	ModRegData* dat = new ModRegData{msg, module};
 	return DataPacket{8, dat, REGMOD_SIZE};
 }

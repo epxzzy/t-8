@@ -8,7 +8,7 @@
 #include "event.hpp"
 #include "./types.hpp"
 
-typedef std::function<void(const Event *event)> ListenerCallback;
+typedef std::function<void(const Event* event)> ListenerCallback;
 typedef std::unordered_map<std::string, ListenerCallback> SubscriberMap;
 typedef std::unordered_map<EventType, SubscriberMap> ListenersMap;
 

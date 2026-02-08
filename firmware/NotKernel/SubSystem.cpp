@@ -28,7 +28,7 @@ void SubSystem::init(){
         "SubManager",
         this->submanager.getEventType(),
         [this](const Event* ev) {
-            this->handleInternalEvent(*ev);
+            this->handleInternalEvent(ev);
         }
     );
 
@@ -44,7 +44,7 @@ void SubSystem::init(){
         "SystemController",
         this->syscontroller.getEventType(),
         [this](const Event* ev) {
-            this->handleExternalEvent(*ev);
+            this->handleExternalEvent(ev);
         }
     );
     
@@ -54,9 +54,8 @@ void SubSystem::tick(){
     this->submanager.tickMods();
 }
 
-void SubSystem::handleInternalEvent(Event ev){
-    switch (ev.getType()) {
-
+void SubSystem::handleInternalEvent(const Event* ev){
+    switch (ev->getType()) {
         case MOD_STARTED: 
             //this->submanager->start(ev.getData().data.name);
             //im fuckin stupid this need to move to internals once i do get around to doing that
@@ -68,6 +67,28 @@ void SubSystem::handleInternalEvent(Event ev){
 
         default: 
 
+            break;
+    }
+}
+
+void SubSystem::handleExternalEvent(const Event* ev){
+    switch (ev->getType()) {
+        case EventType::TOOL_SUCCESS: 
+            //make a jingle or something idk
+            break;
+
+        case EventType::TOOL_FAILURE:
+            //ohh ouh- STINKYYY
+            break;
+
+        case EventType::TOOL_LIMBO:
+            //something is up, prob waiting on input
+            break;
+        case EventType::TOOL_IHADENOUGH:
+            //me too buddy me too
+            break;
+
+        default: 
             break;
     }
 }

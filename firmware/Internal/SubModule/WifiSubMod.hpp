@@ -3,6 +3,7 @@
 #include "./BasicSubModule.hpp"
 #include "Interfaces/IEmitterNode.hpp"
 #include "esp_event_base.h"
+#include <cstdio>
 
 struct WiFiConfig;
 
@@ -13,7 +14,9 @@ public:
 
     void init() override;
     void start() override;
-    void tick() override {};
+    void tick() override {
+    };
+    bool isConnected() const { return connected; }
     //empty override so things dont fuck themselves
     void stop() override;
 
@@ -25,12 +28,12 @@ public:
         (this->getEmitter()).emit(ev);
     } 
 
-    bool handle(Directive* dv){
+    bool handle(Directive* dv) override {
         return false;
     }
 
 private:
-    bool connected = false;
+    volatile bool connected = false;
     int retryCount = 0;
 
     static void eventTrampoline(
@@ -46,5 +49,4 @@ private:
         void* data
     );
     void handleSubModuleEvent(const Event ev)  {};
-
 };

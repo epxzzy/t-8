@@ -34,7 +34,7 @@ void WiFiSubModule::init() {
     );
 }
 
-void WiFiSubModule::start() {
+void WiFiSubModule::start(){
     wifi_config_t wifi_config{};
     strcpy((char*)wifi_config.sta.ssid, WIFI_SSID);
     strcpy((char*)wifi_config.sta.password, WIFI_PASS);
@@ -44,7 +44,7 @@ void WiFiSubModule::start() {
     esp_wifi_start();
 }
 
-void WiFiSubModule::stop() {
+void WiFiSubModule::stop(){
     esp_wifi_stop();
     connected = false;
 }
@@ -70,27 +70,31 @@ void WiFiSubModule::handleWifiEvent(
 
     if (base == WIFI_EVENT && id == WIFI_EVENT_STA_DISCONNECTED) {
         connected = false;
-        retryCount++;
+        //retryCount++;
 
         esp_wifi_connect();
 
-        Event eventtoPoste = Event(
-            EventType::WIFI_DISCONNECTED,
-            CreateVoidDataPacket(EventType::WIFI_DISCONNECTED)
+        /*
+        this->emit(
+            Event(
+                EventType::WIFI_DISCONNECTED,
+                CreateVoidDataPacket(EventType::WIFI_DISCONNECTED)
+            )
         );
-        this->emit(eventtoPoste);
+        */
         return;
     }
     if (base == IP_EVENT && id == IP_EVENT_STA_GOT_IP) {
         connected = true;
-        retryCount = 0;
-
-        Event eventtoPoste = Event(
-            EventType::WIFI_CONNECTED,
-            CreateVoidDataPacket(EventType::WIFI_CONNECTED)
+        //retryCount = 0;
+        /*
+        this->emit(
+        Event(
+                EventType::WIFI_CONNECTED,
+                CreateVoidDataPacket(EventType::WIFI_CONNECTED)
+            )
         );
-        this->emit(eventtoPoste);
-
+        */
         return;
     }
 

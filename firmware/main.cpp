@@ -26,9 +26,12 @@ void hello_task(void* arg) {
 extern "C" void app_main(void) {
   SubSystem themotherfuckingsystem;
   themotherfuckingsystem.init();
+  /*
   for(;;){
     themotherfuckingsystem.tick();
   }
+  */
+  //TODO:: forever loop makes the watchdog mad, tame that dawg
 
 /*
   typedef Registry<std::string, int> intreg; 

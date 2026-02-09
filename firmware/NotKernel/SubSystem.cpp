@@ -57,12 +57,11 @@ void SubSystem::tick(){
 void SubSystem::handleInternalEvent(const Event* ev){
     switch (ev->getType()) {
         case MOD_STARTED: 
-            //this->submanager->start(ev.getData().data.name);
-            //im fuckin stupid this need to move to internals once i do get around to doing that
+            //sinkExternal(dv);
             break;
 
         case MOD_STOPED:
-            //this->submanager->stop(ev.getData().data.name);
+            //sinkExternal(dv);
             break;
 
         default: 

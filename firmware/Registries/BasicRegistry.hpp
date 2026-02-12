@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Common/data.hpp"
-#include "Internal/SubModule/BasicSubModule.hpp"
+#include "Internal/SubModule/AbstractSubModule.hpp"
 #include <functional>
 #include <string>
 #include <unordered_map>

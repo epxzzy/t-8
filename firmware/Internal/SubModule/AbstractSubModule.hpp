@@ -7,9 +7,9 @@
 #include "Interfaces/IDirectiveNode.hpp"
 #include "Interfaces/IEmitterNode.hpp"
 
-class BasicSubModule: public IEmitterNode {
+class AbstractSubModule: public IEmitterNode {
 public: 
-    BasicSubModule(){}; 
+    AbstractSubModule(){}; 
 
     virtual EventType getEventType() = 0;
 

@@ -20,7 +20,7 @@ idf_component_register(
         "Interfaces/IEmitterNode.hpp"
 
         "Internal/SubManager/SubManager.hpp"
-        "Internal/SubModule/BasicSubModule.hpp"
+        "Internal/SubModule/AbstractSubModule.hpp"
         "Internal/SubModule/WifiSubMod.cpp"
         "Internal/SubModule/WifiSubMod.hpp"
 

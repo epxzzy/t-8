@@ -5,10 +5,10 @@
 #include "Events/Frame/types.hpp"
 #include "Interfaces/IDirectiveNode.hpp"
 #include "Interfaces/IEmitterNode.hpp"
-#include "Internal/SubModule/BasicSubModule.hpp"
+#include "Internal/SubModule/AbstractSubModule.hpp"
 #include "Registries/BasicRegistry.hpp"
 
-typedef Registry<std::string, BasicSubModule*> subModReg;
+typedef Registry<std::string, AbstractSubModule*> subModReg;
 
 class SubManager : public IEmitterNode, public IDirectiveNode<SubManager> {
 
@@ -65,7 +65,7 @@ public:
 
   }
   
-  std::string registerMod(std::string name, BasicSubModule* submod) {
+  std::string registerMod(std::string name, AbstractSubModule* submod) {
     this->subManReg.registerItem(name, submod);
     return name;
   };
@@ -79,14 +79,14 @@ public:
 
   void initMods() {
     for (auto it = this->subManReg.begin(); it != this->subManReg.end(); it++) {
-      BasicSubModule* val = it->second;
+      AbstractSubModule* val = it->second;
       val->init();
     };
   };
 
   void tickMods() {
     for (auto it = this->subManReg.begin(); it != this->subManReg.end(); it++) {
-      BasicSubModule* val = it->second;
+      AbstractSubModule* val = it->second;
       val->tick();
     }
   };
@@ -106,7 +106,7 @@ public:
   void start(std::string name) {
     auto exists = this->subManReg.acquire(name);
     if (exists) {
-        BasicSubModule* modular = exists->get();
+        AbstractSubModule* modular = exists->get();
         BasicEmitter modularemitter = modular->getEmitter();
 
         modularemitter.subscribe(
@@ -121,7 +121,7 @@ public:
   void stop(std::string name) {
     auto exists = this->subManReg.acquire(name);
     if (exists) {
-        BasicSubModule* modular = exists->get();
+        AbstractSubModule* modular = exists->get();
         BasicEmitter modularemitter = modular->getEmitter();
 
         modularemitter.unsubscribe(

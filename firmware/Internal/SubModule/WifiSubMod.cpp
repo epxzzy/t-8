@@ -9,7 +9,7 @@
 #include <string.h>
 
 WiFiSubModule::WiFiSubModule()
-    : BasicSubModule() {}
+    : AbstractSubModule() {}
 
 void WiFiSubModule::init() {
     esp_netif_init();
@@ -87,6 +87,7 @@ void WiFiSubModule::handleWifiEvent(
     if (base == IP_EVENT && id == IP_EVENT_STA_GOT_IP) {
         connected = true;
         //retryCount = 0;
+        
         /*
         this->emit(
         Event(
@@ -95,6 +96,9 @@ void WiFiSubModule::handleWifiEvent(
             )
         );
         */
+        //TODO: figure out why these cause a crash
+        //^ logs mention interrupts so maybe make a queue and put events in there
+        
         return;
     }
 

@@ -2,9 +2,9 @@
 
 #include "Internal/SubModule/WifiSubMod.hpp"
 #include "Registries/BasicRegistry.hpp"
-#include "Internal/SubModule/BasicSubModule.hpp"
+#include "Internal/SubModule/AbstractSubModule.hpp"
 
-typedef Registry<std::string, BasicSubModule*> reg;
+typedef Registry<std::string, AbstractSubModule*> reg;
 
 static reg thereg;
 

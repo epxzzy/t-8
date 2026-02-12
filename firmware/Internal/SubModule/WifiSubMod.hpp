@@ -1,13 +1,13 @@
 #pragma once
 
-#include "./BasicSubModule.hpp"
+#include "./AbstractSubModule.hpp"
 #include "Interfaces/IEmitterNode.hpp"
 #include "esp_event_base.h"
 #include <cstdio>
 
 struct WiFiConfig;
 
-class WiFiSubModule : public BasicSubModule {
+class WiFiSubModule : public AbstractSubModule {
 
 public:
     WiFiSubModule();

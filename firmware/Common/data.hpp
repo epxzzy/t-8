@@ -70,17 +70,17 @@ inline DataPacket CreateVoidDataPacket(EventType type){
 
 //mod reg data stuff
 
-class BasicSubModule;
+class AbstractSubModule;
 //circular dependency hack
 
 struct ModRegData{
 	std::string targetName;
-	BasicSubModule* module;
+	AbstractSubModule* module;
 };
 
 constexpr size_t REGMOD_SIZE = sizeof(ModRegData);
 
-inline DataPacket CreateModRegDataPacket(std::string msg, BasicSubModule* module){
+inline DataPacket CreateModRegDataPacket(std::string msg, AbstractSubModule* module){
 	ModRegData* dat = new ModRegData{msg, module};
 	return DataPacket{8, dat, REGMOD_SIZE};
 }
